@@ -6,6 +6,7 @@
     <field name="through_date"/>
     <field name="manager"/>
     <field name="contact"/>
+    <field name="manager_reference"/>
 </tree>
 
 

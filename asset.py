@@ -2,13 +2,13 @@
 # copyright notices and license terms.
 from trytond.pool import PoolMeta, Pool
 from trytond.model import fields
-from trytond.modules.asset.asset import AssetAssigmentMixin
+from trytond.modules.asset.asset import AssetAssignmentMixin
 
 __all__ = ['Asset', 'AssetManager']
 __metaclass__ = PoolMeta
 
 
-class AssetManager(AssetAssigmentMixin):
+class AssetManager(AssetAssignmentMixin):
     'Asset Manager'
 
     __name__ = 'asset.manager'
@@ -41,7 +41,8 @@ class Asset:
             if not assigment_id:
                 continue
             assigment = AssetManager(assigment_id)
-            result['current_manager'][asset] = assigment.manager.id
+            result['current_manager'][asset] = assigment.manager and  \
+                assigment.manager.id
             result['current_manager_contact'][asset] = assigment.contact and \
                 assigment.contact.id
         return result

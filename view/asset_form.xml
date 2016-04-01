@@ -6,9 +6,9 @@
         <page id="managers" string="Managers">
             <label name="current_manager"/>
             <field name="current_manager"/>
-            <label name="current_manage_contact"/>
-            <field name="current_manage_contact"/>
-            <field name="managers" colsan="4"/>
+            <label name="current_manager_contact"/>
+            <field name="current_manager_contact"/>
+            <field name="managers" colspan="4"/>
         </page>
     </xpath>
 </data>
