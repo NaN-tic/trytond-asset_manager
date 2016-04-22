@@ -72,8 +72,8 @@ class Asset:
         date = transaction.context.get('_datetime', Date.today())
         if isinstance(date, datetime):
             date = date.date()
-        clause[0] = 'manager'
-        expression = AssetManager.manager.convert_domain(clause, tables,
+        new_clause = tuple(('manager',)) + tuple(clause[1:])
+        expression = AssetManager.manager.convert_domain(new_clause, tables,
             AssetManager)
         query = party.join(table, condition=condition).select(
             table.asset, where=(
