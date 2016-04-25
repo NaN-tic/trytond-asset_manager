@@ -15,17 +15,14 @@ __metaclass__ = PoolMeta
 
 class AssetManager(AssetAssignmentMixin):
     'Asset Manager'
-
     __name__ = 'asset.manager'
-
+    asset = fields.Many2One('asset', 'Asset')
     manager = fields.Many2One('party.party', 'Manager')
     contact = fields.Many2One('party.party', 'Contact')
-    asset = fields.Many2One('asset', 'Asset')
     manager_reference = fields.Char('Manager Reference')
 
 
 class Asset:
-
     __name__ = 'asset'
     managers = fields.One2Many('asset.manager', 'asset', 'Managers')
     current_manager = fields.Function(fields.Many2One('party.party',
