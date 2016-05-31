@@ -1,14 +1,10 @@
-#
+# 
 msgid ""
 msgstr "Content-Type: text/plain; charset=utf-8\n"
 
 msgctxt "error:asset.manager:"
-msgid "\"%(first)s\" and \"%(second)s\" assigmentoverlap."
-msgstr "\"%(first)s\" i \"%(second)s\" es solapen."
-
-msgctxt "error:asset.owner:"
-msgid "\"%(first)s\" and \"%(second)s\" assigmentoverlap."
-msgstr "\"%(first)s\" i \"%(second)s\" es solapen."
+msgid "\"%(first)s\" and \"%(second)s\" assigment overlap."
+msgstr "Els períodes \"%(first)s\" i \"%(second)s\" se solapen."
 
 msgctxt "field:asset,current_manager:"
 msgid "Current Manager"
@@ -73,6 +69,10 @@ msgstr "Usuari modificació"
 msgctxt "model:asset.manager,name:"
 msgid "Asset Manager"
 msgstr "Administrador"
+
+msgctxt "model:ir.action,name:act_asset_manager"
+msgid "Asset Managers"
+msgstr "Administradors"
 
 msgctxt "view:asset.manager:"
 msgid "Asset Manager"

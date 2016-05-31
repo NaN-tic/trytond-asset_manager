@@ -1,23 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <tryton>
     <data>
-
         <record model="ir.ui.view" id="asset_view_form">
             <field name="model">asset</field>
             <field name="inherit" ref="asset.asset_view_form"/>
             <field name="name">asset_form</field>
         </record>
-
-       <record model="ir.ui.view" id="asset_manager_view_form">
-            <field name="model">asset.manager</field>
-            <field name="type">form</field>
-            <field name="name">asset_manager_form</field>
+        <record model="ir.ui.view" id="asset_manager_view_form">
+             <field name="model">asset.manager</field>
+             <field name="type">form</field>
+             <field name="name">asset_manager_form</field>
+         </record>
+        <record model="ir.ui.view" id="asset_manager_view_list">
+             <field name="model">asset.manager</field>
+             <field name="type">tree</field>
+             <field name="name">asset_manager_list</field>
         </record>
-       <record model="ir.ui.view" id="asset_manager_view_list">
-            <field name="model">asset.manager</field>
-            <field name="type">tree</field>
-            <field name="name">asset_manager_list</field>
+
+        <record model="ir.model.access" id="access_asset">
+            <field name="model" search="[('model', '=', 'asset')]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_delete" eval="False"/>
+        </record>
+        <record model="ir.model.access" id="access_asset_group_asset">
+            <field name="model" search="[('model', '=', 'asset')]"/>
+            <field name="group" ref="asset.group_asset"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_delete" eval="True"/>
         </record>
 
+        <record model="ir.action.act_window" id="act_asset_manager">
+            <field name="name">Asset Managers</field>
+            <field name="res_model">asset.manager</field>
+        </record>
+
+        <record model="ir.action.act_window.view" id="act_asset_manager_view1">
+            <field name="sequence" eval="10"/>
+            <field name="view" ref="asset_manager_view_list"/>
+            <field name="act_window" ref="act_asset_manager"/>
+        </record>
+        <record model="ir.action.act_window.view" id="act_asset_manager_view2">
+            <field name="sequence" eval="20"/>
+            <field name="view" ref="asset_manager_view_form"/>
+            <field name="act_window" ref="act_asset_manager"/>
+        </record>
+
+        <menuitem action="act_asset_manager" id="menu_asset_form"
+            parent="asset.menu_asset" sequence="50"/>
     </data>
 </tryton>
