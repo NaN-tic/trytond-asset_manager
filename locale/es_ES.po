@@ -1,4 +1,4 @@
-# 
+#
 msgid ""
 msgstr "Content-Type: text/plain; charset=utf-8\n"
 
@@ -71,6 +71,10 @@ msgid "Asset Manager"
 msgstr "Administrador del Activo"
 
 msgctxt "model:ir.action,name:act_asset_manager"
+msgid "Asset Managers"
+msgstr "Administradores"
+
+msgctxt "model:ir.ui.menu,name:menu_asset_form"
 msgid "Asset Managers"
 msgstr "Administradores"
 
