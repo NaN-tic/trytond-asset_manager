@@ -20,7 +20,7 @@ msgstr "Administradors"
 
 msgctxt "field:asset.manager,asset:"
 msgid "Asset"
-msgstr "Actius"
+msgstr "Actiu"
 
 msgctxt "field:asset.manager,contact:"
 msgid "Contact"
