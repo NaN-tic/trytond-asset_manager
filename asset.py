@@ -20,6 +20,17 @@ class AssetManager(AssetAssignmentMixin):
     manager = fields.Many2One('party.party', 'Manager', required=True)
     contact = fields.Many2One('party.party', 'Contact')
     manager_reference = fields.Char('Manager Reference')
+    company = fields.Function(fields.Many2One('company.company', 'Company'),
+        'on_change_with_asset', searcher='search_company')
+
+    @fields.depends('asset')
+    def on_change_with_asset(self, name=None):
+        if self.asset and self.asset.company:
+            return self.asset.company.id
+
+    @classmethod
+    def search_company(cls, name, clause):
+        return [('asset.%s' % name,) + tuple(clause[1:])]
 
 
 class Asset:
