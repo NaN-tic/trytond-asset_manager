@@ -8,7 +8,6 @@ from trytond.pool import PoolMeta, Pool
 from trytond.model import fields
 from trytond.transaction import Transaction
 from trytond.modules.asset.asset import AssetAssignmentMixin
-from trytond.pyson import Eval
 
 __all__ = ['Asset', 'AssetManager']
 __metaclass__ = PoolMeta
@@ -17,10 +16,8 @@ __metaclass__ = PoolMeta
 class AssetManager(AssetAssignmentMixin):
     'Asset Manager'
     __name__ = 'asset.manager'
-    asset = fields.Many2One('asset', 'Asset', required=True, ondelete='CASCADE',
-        domain=[
-            ('company', '=', Eval('context', {}).get('company', -1)),
-            ])
+    asset = fields.Many2One('asset', 'Asset', required=True,
+        ondelete='CASCADE')
     manager = fields.Many2One('party.party', 'Manager', required=True)
     contact = fields.Many2One('party.party', 'Contact')
     manager_reference = fields.Char('Manager Reference')
