@@ -10,12 +10,13 @@ from trytond.transaction import Transaction
 from trytond.modules.asset.asset import AssetAssignmentMixin
 
 __all__ = ['Asset', 'AssetManager']
-__metaclass__ = PoolMeta
 
 
 class AssetManager(AssetAssignmentMixin):
     'Asset Manager'
     __name__ = 'asset.manager'
+    __metaclass__ = PoolMeta
+
     asset = fields.Many2One('asset', 'Asset', required=True,
         ondelete='CASCADE')
     manager = fields.Many2One('party.party', 'Manager', required=True)
@@ -36,6 +37,8 @@ class AssetManager(AssetAssignmentMixin):
 
 class Asset:
     __name__ = 'asset'
+    __metaclass__ = PoolMeta
+
     managers = fields.One2Many('asset.manager', 'asset', 'Managers')
     current_manager = fields.Function(fields.Many2One('party.party',
         'Current Manager'), 'get_current_manager',
@@ -56,10 +59,12 @@ class Asset:
             if not assigment_id:
                 continue
             assigment = AssetManager(assigment_id)
-            result['current_manager'][asset] = assigment.manager and  \
-                assigment.manager.id
-            result['current_manager_contact'][asset] = assigment.contact and \
-                assigment.contact.id
+            if 'current_manager' in names:
+                result['current_manager'][asset] = assigment.manager and  \
+                    assigment.manager.id
+            if 'current_manager_contact' in names:
+                result['current_manager_contact'][asset] = assigment.contact \
+                    and assigment.contact.id
         return result
 
     @classmethod

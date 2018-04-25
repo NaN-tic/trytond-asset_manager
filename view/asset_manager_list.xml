@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!-- The COPYRIGHT file at the top level of this repository contains the full
      copyright notices and license terms. -->
-<tree string="Asset Manager">
+<tree>
     <field name="asset"/>
     <field name="from_date"/>
     <field name="through_date"/>
@@ -9,5 +9,3 @@
     <field name="contact"/>
     <field name="manager_reference"/>
 </tree>
-
-
