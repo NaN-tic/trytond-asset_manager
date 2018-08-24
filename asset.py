@@ -12,10 +12,9 @@ from trytond.modules.asset.asset import AssetAssignmentMixin
 __all__ = ['Asset', 'AssetManager']
 
 
-class AssetManager(AssetAssignmentMixin):
+class AssetManager(AssetAssignmentMixin, metaclass=PoolMeta):
     'Asset Manager'
     __name__ = 'asset.manager'
-    __metaclass__ = PoolMeta
 
     asset = fields.Many2One('asset', 'Asset', required=True,
         ondelete='CASCADE')
@@ -35,9 +34,8 @@ class AssetManager(AssetAssignmentMixin):
         return [('asset.%s' % name,) + tuple(clause[1:])]
 
 
-class Asset:
+class Asset(metaclass=PoolMeta):
     __name__ = 'asset'
-    __metaclass__ = PoolMeta
 
     managers = fields.One2Many('asset.manager', 'asset', 'Managers')
     current_manager = fields.Function(fields.Many2One('party.party',
@@ -55,7 +53,7 @@ class Asset:
         for name in names:
             result[name] = dict((i.id, None) for i in assets)
 
-        for asset, assigment_id in assigments.iteritems():
+        for asset, assigment_id in assigments.items():
             if not assigment_id:
                 continue
             assigment = AssetManager(assigment_id)
