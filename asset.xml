@@ -43,6 +43,7 @@
         </record>
 
         <record model="ir.rule.group" id="rule_group_asset">
+            <field name="name">Asset Manager Company Rule</field>
             <field name="model" search="[('model', '=', 'asset.manager')]"/>
             <field name="global_p" eval="True"/>
         </record>
