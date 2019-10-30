@@ -24,7 +24,7 @@ class AssetManager(AssetAssignmentMixin, metaclass=PoolMeta):
     company = fields.Function(fields.Many2One('company.company', 'Company'),
         'on_change_with_company', searcher='search_company')
 
-    @fields.depends('asset')
+    @fields.depends('asset', '_parent_asset.company')
     def on_change_with_company(self, name=None):
         if self.asset and self.asset.company:
             return self.asset.company.id
