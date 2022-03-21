@@ -5,6 +5,7 @@ from sql import Literal
 from sql.conditionals import Coalesce
 
 from trytond.pool import PoolMeta, Pool
+from trytond.pyson import Eval
 from trytond.model import fields
 from trytond.transaction import Transaction
 from trytond.modules.asset.asset import AssetAssignmentMixin
@@ -18,8 +19,16 @@ class AssetManager(AssetAssignmentMixin, metaclass=PoolMeta):
 
     asset = fields.Many2One('asset', 'Asset', required=True,
         ondelete='CASCADE')
-    manager = fields.Many2One('party.party', 'Manager', required=True)
-    contact = fields.Many2One('party.party', 'Contact')
+    manager = fields.Many2One('party.party', 'Manager', required=True,
+        context={
+            'company': Eval('company'),
+            },
+        depends=['company'])
+    contact = fields.Many2One('party.party', "Contact",
+        context={
+            'company': Eval('company'),
+            },
+        depends=['company'])
     manager_reference = fields.Char('Manager Reference')
     company = fields.Function(fields.Many2One('company.company', 'Company'),
         'on_change_with_company', searcher='search_company')
@@ -39,10 +48,19 @@ class Asset(metaclass=PoolMeta):
 
     managers = fields.One2Many('asset.manager', 'asset', 'Managers')
     current_manager = fields.Function(fields.Many2One('party.party',
-        'Current Manager'), 'get_current_manager',
-        searcher='search_current_manager')
+        "Current Manager",
+        context={
+            'company': Eval('company'),
+            },
+        depends=['company'],
+        ), 'get_current_manager', searcher='search_current_manager')
     current_manager_contact = fields.Function(fields.Many2One('party.party',
-        'Current Manager Contact'), 'get_current_manager')
+        "Current Manager Contact",
+        context={
+            'company': Eval('company'),
+            },
+        depends=['company'],
+        ), 'get_current_manager')
 
     @classmethod
     def get_current_manager(cls, assets, names):
