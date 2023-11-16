@@ -21,12 +21,12 @@ class AssetManager(AssetAssignmentMixin, metaclass=PoolMeta):
         ondelete='CASCADE')
     manager = fields.Many2One('party.party', 'Manager', required=True,
         context={
-            'company': Eval('company'),
+            'company': Eval('company', -1),
             },
         depends=['company'])
     contact = fields.Many2One('party.party', "Contact",
         context={
-            'company': Eval('company'),
+            'company': Eval('company', -1),
             },
         depends=['company'])
     manager_reference = fields.Char('Manager Reference')
@@ -50,14 +50,14 @@ class Asset(metaclass=PoolMeta):
     current_manager = fields.Function(fields.Many2One('party.party',
         "Current Manager",
         context={
-            'company': Eval('company'),
+            'company': Eval('company', -1),
             },
         depends=['company'],
         ), 'get_current_manager', searcher='search_current_manager')
     current_manager_contact = fields.Function(fields.Many2One('party.party',
         "Current Manager Contact",
         context={
-            'company': Eval('company'),
+            'company': Eval('company', -1),
             },
         depends=['company'],
         ), 'get_current_manager')
