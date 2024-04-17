@@ -27,14 +27,14 @@
         </record>
 
         <record model="ir.model.access" id="access_asset">
-            <field name="model" search="[('model', '=', 'asset.manager')]"/>
+            <field name="model">asset.manager</field>
             <field name="perm_read" eval="True"/>
             <field name="perm_write" eval="False"/>
             <field name="perm_create" eval="False"/>
             <field name="perm_delete" eval="False"/>
         </record>
         <record model="ir.model.access" id="access_asset_group_asset">
-            <field name="model" search="[('model', '=', 'asset.manager')]"/>
+            <field name="model">asset.manager</field>
             <field name="group" ref="asset.group_asset"/>
             <field name="perm_read" eval="True"/>
             <field name="perm_write" eval="True"/>
@@ -44,7 +44,7 @@
 
         <record model="ir.rule.group" id="rule_group_asset">
             <field name="name">Asset Manager Company Rule</field>
-            <field name="model" search="[('model', '=', 'asset.manager')]"/>
+            <field name="model">asset.manager</field>
             <field name="global_p" eval="True"/>
         </record>
         <record model="ir.rule" id="rule_asset1">
