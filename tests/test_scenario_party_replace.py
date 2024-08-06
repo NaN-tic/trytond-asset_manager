@@ -18,8 +18,6 @@ class Test(unittest.TestCase):
 
     def test(self):
 
-        # Imports
-
         # Install asset_maintenance
         activate_modules('asset_manager')
 
