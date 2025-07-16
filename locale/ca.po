@@ -2,10 +2,6 @@
 msgid ""
 msgstr "Content-Type: text/plain; charset=utf-8\n"
 
-msgctxt "error:asset.manager:"
-msgid "\"%(first)s\" and \"%(second)s\" assigment overlap."
-msgstr "Els períodes \"%(first)s\" i \"%(second)s\" se solapen."
-
 msgctxt "field:asset,current_manager:"
 msgid "Current Manager"
 msgstr "Administrador"
